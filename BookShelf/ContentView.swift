@@ -51,6 +51,16 @@ struct CatalogTab: View {
                     .disabled(viewModel.isLoading)
                 }
             }
+            .safeAreaInset(edge: .bottom) {
+                if viewModel.isUsingDemoData {
+                    Text("Сервер недоступен — показаны демонстрационные книги")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity)
+                        .background(.thinMaterial)
+                }
+            }
             .task {
                 await viewModel.loadInitial()
                 viewModel.loadFavorites()
@@ -116,6 +126,16 @@ struct SearchView: View {
                         }
                     }
                     .listStyle(.plain)
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                if viewModel.isUsingDemoData {
+                    Text("Сервер недоступен — поиск работает по демонстрационным данным")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity)
+                        .background(.thinMaterial)
                 }
             }
             .navigationTitle("Поиск")
@@ -259,7 +279,9 @@ struct RemoteBookCover: View {
                     .resizable()
                     .scaledToFit()
             } else {
-                ProgressView()
+                Image(systemName: url == nil ? "book.closed" : "book")
+                    .font(.system(size: 42))
+                    .foregroundStyle(.secondary)
             }
         }
         .task(id: url) { model.load(url: url) }
@@ -389,6 +411,8 @@ final class BookCollectionCell: UICollectionViewCell {
     func configure(book: Book, imageLoader: BookImageLoader) {
         task?.cancel()
         coverView.image = nil
+        coverView.image = UIImage(systemName: "book.closed")
+        coverView.tintColor = .secondaryLabel
         titleLabel.text = book.title
         authorLabel.text = book.author
         yearLabel.text = book.displayYear

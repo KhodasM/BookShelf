@@ -13,6 +13,17 @@ struct Book: Codable, Hashable, Identifiable {
     }
 }
 
+enum SampleBookData {
+    static let books: [Book] = [
+        Book(id: "/works/OL45804W", title: "The Swift Programming Language", author: "Apple Inc.", coverURL: nil, publishedYear: 2024, summary: "Официальное руководство по языку Swift и разработке приложений для Apple-платформ."),
+        Book(id: "/works/OL17924733W", title: "Swift Programming: The Big Nerd Ranch Guide", author: "Matthew Mathias", coverURL: nil, publishedYear: 2016, summary: "Практическое введение в Swift с примерами и небольшими проектами."),
+        Book(id: "/works/OL27448W", title: "Clean Code", author: "Robert C. Martin", coverURL: nil, publishedYear: 2008, summary: "Принципы создания понятного и поддерживаемого программного кода."),
+        Book(id: "/works/OL2433231W", title: "Design Patterns", author: "Erich Gamma", coverURL: nil, publishedYear: 1994, summary: "Классические шаблоны проектирования и способы их применения."),
+        Book(id: "/works/OL7353617W", title: "The Pragmatic Programmer", author: "David Thomas", coverURL: nil, publishedYear: 2019, summary: "Практические подходы к профессиональной разработке программного обеспечения."),
+        Book(id: "/works/OL1975769W", title: "iOS Programming: The Big Nerd Ranch Guide", author: "Christian Keur", coverURL: nil, publishedYear: 2020, summary: "Руководство по созданию приложений для iOS на Swift."),
+    ]
+}
+
 protocol BookAPIClientProtocol {
     func searchBooks(query: String, limit: Int) async throws -> [Book]
 }
