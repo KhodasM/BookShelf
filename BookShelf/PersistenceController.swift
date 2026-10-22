@@ -46,8 +46,6 @@ final class PersistenceController: FavoritesStoreProtocol {
         entity.coverURL = book.coverURL?.absoluteString ?? ""
         entity.publishedYear = Int32(book.publishedYear ?? 0)
         entity.summary = book.summary
-        // `savedAt` is a required Core Data attribute. A new managed object
-        // has no value yet, so assign the date without reading it first.
         entity.savedAt = .now
         try container.viewContext.save()
     }
