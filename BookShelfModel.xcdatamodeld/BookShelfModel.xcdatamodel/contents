@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23522" systemVersion="25A354" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FavoriteBookEntity" representedClassName="FavoriteBookEntity" syncable="YES">
+        <attribute name="remoteID" optional="NO" attributeType="String" defaultValueString=""/>
+        <attribute name="title" optional="NO" attributeType="String" defaultValueString=""/>
+        <attribute name="author" optional="NO" attributeType="String" defaultValueString=""/>
+        <attribute name="coverURL" optional="NO" attributeType="String" defaultValueString=""/>
+        <attribute name="publishedYear" optional="NO" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="summary" optional="NO" attributeType="String" defaultValueString=""/>
+        <attribute name="savedAt" optional="NO" attributeType="Date"/>
+    </entity>
+</model>
