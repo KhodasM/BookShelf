@@ -44,7 +44,8 @@ struct OpenLibraryAPIClient: BookAPIClientProtocol {
             URLQueryItem(name: "limit", value: String(limit)),
             URLQueryItem(name: "fields", value: "key,title,author_name,first_publish_year,cover_i,first_sentence")
         ]
-        let request = URLRequest(url: components.url!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
+        var request = URLRequest(url: components.url!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
+        request.setValue("BookShelf/1.0 (educational iOS app)", forHTTPHeaderField: "User-Agent")
         let (data, response) = try await session.data(for: request)
         guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
             throw URLError(.badServerResponse)
